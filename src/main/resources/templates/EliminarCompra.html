@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+<meta charset="ISO-8859-1">
+<title>Eliminar compra</title>
+ <link rel="stylesheet" type="text/css" href="static/css/estilos.css" th:href="@{/css/estilos.css}">
+            <link rel="stylesheet" type="text/css" href="static/css/baner.css" th:href="@{/css/baner.css}">
+              <link rel="stylesheet" type="text/css" href="static/css/fonts.css" th:href="@{/css/fonts.css}">
+              <link rel="stylesheet" type="text/css" href="static/css/estilosCompra.css" th:href="@{/css/estilosCompra.css}">
+              <link rel="stylesheet" type="text/css" href="static/css/tablaEliminar.css" th:href="@{/css/tablaEliminar.css}">
+   
+</head>
+<body>
+<div class="titu">
+  <h1 id="titulo" align="center">Eliminar Compra</h1>
+  
+  </div>
+  <br><br><br><br><br>
+    <hr size="3" color="black"></hr>
+<div class="cabecera">
+<nav> <!-- Aqui estamos iniciando la nueva etiqueta nav -->
+				<ul class="nav">
+					<li><a href="menu"><span class="icon-home3"></span> Inicio</a></li>
+					<li><a href=""><span class="icon-cart"></span> Compras</a>
+						<ul>
+							<li><a href="realizar">Realizar Compra</a></li>
+							<li><a href="consultar">Consultar Compra</a></li>
+							<li><a href="eliminar">Eliminar Compra</a></li>
+						</ul>
+					</li>
+					<li><a href=""><span class="icon-sale"></span> Ventas</a>
+						<ul>
+							 <li><a href="">Realizar Venta</a></li>
+   						   <li><a href="">Consultar Venta</a></li>
+     				      <li><a href="">Eliminar Ventas</a></li>
+						</ul>
+					</li>
+					<li><a href=""><span class="icon-spell-check"></span> Inventario</a>
+                    	<ul>
+							<li><a href="">Consultar Inventario</a></li>
+						</ul>
+					</li>	
+                     <li><a href=""><span class="icon-automobile"></span> Proveedor</a>
+						<ul>
+							 <li><a href="">Registrar Proveedor</a></li>
+   						   <li><a href="">Consultar Proveedores</a></li>
+     				      <li><a href="">Modificar Proveedores</a></li>
+                          <li><a href=""> Eliminar Proveedores</a></li>			
+						</ul>
+					</li>
+				</ul>
+			</nav><!-- Aqui estamos cerrando la nueva etiqueta nav -->
+	</div>
+	<br><br><br>
+		<br><br><br>
+ <div id="marco">  
+ <div id="tab">
+  <table>
+  	<thead>
+  		<tr>
+  			<th> Folio</th><th> Fecha</th><th>Material</th><th>Cantidad</th><th>Unidad</th><th>Precio Unitario</th><th>IVA</th><th>Importe</th><th>Eliminar</th>
+  </tr>
+  </thead>
+ <tr>
+ 	<td>001</td><td>14/09/2019</td><td>Carton</td><td>1456</td><td>KG</td><td>3.40</td><td>8%</td><td>$4950.4</td><td><button ><b>Eliminar</b></button></td>
+ </tr>
+ <tr>
+ 	<td>002</td><td>20/04/2019</td><td>Aluminio</td><td>300</td><td>Tonelada</td><td>5.30</td><td>8%</td><td>$1590</td><td><button><b>Eliminar</b></button></td>
+ </tr>
+ <tr>
+ 	<td>003</td><td>19/10/2019</td><td>Plastico</td><td>2589</td><td>KG</td><td>2.50</td><td>8%</td><td>$6472.50</td><td><button><b>Eliminar</b></button></td>
+ 	
+ </tr>
+  </table>
+</div>
+</div>
+</body>
+</html>

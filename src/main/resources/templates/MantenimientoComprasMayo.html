@@ -1,0 +1,242 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.w3.org/1999/xhtml">
+<head><title>Compras a mayoristas</title>
+    <link rel="stylesheet" type="text/css" href="css/bootstrap.min.css" th:href="@{/css/bootstrap.min.css}">
+    <link rel="stylesheet" type="text/css" href="css/bootstrap.min.js" th:href="@{/css/bootstrap.min.js}">
+    <link rel="stylesheet" type="text/css" href="static/css/estilos.css" th:href="@{/css/estilos.css}">
+    <link rel="stylesheet" href="static/css/bootstrap.css" th:href="@{/css/bootstrap.css}">
+    <link rel="stylesheet" href="static/css/estilos.css" th:href="@{/css/estilos.css}">
+    <link rel="stylesheet" href="static/css/style.css" th:href="@{/css/style.css}">
+    <link rel="stylesheet" href="static/css/fonts.css" th:href="@{/css/fonts.css}">
+</head>
+<body>
+<div class="jumbotron">
+
+
+    <center><img th:src="@{/img/met.png}" src="../static/img/met.png" height="150px" width="150px"></center>
+</div>
+<!-- Menu -------------------------------------------------------------------------------------------------------->
+<div class="site-wrap">
+    <div th:replace="fragments.html :: menu"></div>
+</div>
+<br>
+<br>
+<br>
+<br>
+<script type="text/javascript">
+    /* Funcion suma. */
+    function SumarAutomatico (valor) {
+        if(valor == null){
+
+        }else{
+            var TotalSuma = 0;
+            var Total = 0;
+            valor = parseFloat(valor); // Convertir a numero entero (número).
+            TotalSuma = document.getElementById('MiSubTotal').innerHTML;
+            // Valida y pone en cero "0".
+            TotalSuma = (TotalSuma == null || TotalSuma == undefined || TotalSuma == "") ? 0 : TotalSuma;
+            /* Variable genrando la suma. */
+            if(TotalSuma == 0){
+                TotalSuma = (parseFloat(TotalSuma) + parseFloat(valor));
+            }else{
+                TotalSuma = (parseFloat(TotalSuma) * parseFloat(valor));
+                Total = (parseFloat(TotalSuma)*1.08);
+            }
+            // Escribir el resultado en una etiqueta "span".
+            document.getElementById('MiSubTotal').innerHTML = TotalSuma;
+            document.getElementById('MiTotal').innerHTML = Total;
+        }
+    }
+
+    function suma(){
+        var sum1 = document.getElementById("sum1");
+        var sum2 = document.getElementById("sum2");
+        var div = document.getElementById("MiSubTotal");
+        var div2 = document.getElementById("MiTotal");
+        resultado = parseFloat(sum1.value) * parseFloat(sum2.value);
+        resultado = resultado.toFixed(2);
+        resultado2 = parseFloat(sum1.value) * parseFloat(sum2.value) * 1.08;
+        resultado2 = resultado2.toFixed(2);
+        div.innerHTML= resultado;
+        div2.innerHTML = resultado2
+    }
+</script>
+<!-- Ventana para Registrar  Compras -->
+<div class="alert alert-success alert-dismissible fade show mensajeE" role="alert" th:classappend="'alert-' + (${clase != null} ? ${clase} : info)" th:if="${mensaje != null}">
+    <strong th:text="${mensaje}">Texto</strong>
+    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+        <span aria-hidden="true">&times;</span>
+    </button>
+</div>
+<div class="alert alert-success alert-dismissible fade show mensajeE" role="alert" th:classappend="'alert-' + (${clasex != null} ? ${clasex} : info)" th:if="${mensajex != null}">
+    <strong th:text="${mensajex}">Texto</strong>
+    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+        <span aria-hidden="true">&times;</span>
+    </button>
+</div>
+
+    <div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+        <div class="modal-dialog modal-lg modal-dialog-centered" role="document">
+            <form class="modal-content" th:action="@{/compraMayorista/addCompraMayorista}" method="post" th:object="${comprasMayo}">
+
+                <div class="modal-header text-center">
+                    <h5 class="modal-title" id="exampleModalCenterTitle">Registrar Compra(Mayoristas)</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <div class="form-row justify-content-start">
+                        <div class="form-group col-md-4">
+                            <label>Folio:</label>
+                            <input type="text" class="form-control" placeholder="001" th:field="*{folioComp}" required>
+                        </div>
+                    </div>
+                    <div class="form-row justify-content-start">
+                        <div class="form-group col-md">
+                        <label>Nombre Mayorista:</label>
+                        <select  th:field="*{idMayorista}" class="form-control">
+                            <option th:each="mayoristas : ${mayorista}" th:value="${mayoristas.idMayorista}" th:text="${mayoristas.nomEmpresa}">Newell Rubermaid</option>
+                        </select>
+                    </div>
+                    </div>
+                    <div class="form-row">
+                    <div class="form-group col-md">
+                        <label>Material:</label>
+                        <select  th:field="*{idMaterial}" class="form-control">
+                            <option th:each="materiales : ${material}" th:value="${materiales.idMaterial}" th:text="${materiales.idMaterial+'-'+materiales.nomMaterial}">Carton</option>
+                        </select>
+                    </div>
+                        
+                        <div class="form-group col-md">
+                            <label>Unidad:</label>
+                            <select  class="form-control" disabled="">
+                              
+                                <option >Kilogramo</option>
+                               
+                            </select>
+                        </div>
+                    </div>
+                    <div class="form-row">
+                        <div class="form-group col-md">
+                            <label>Cantidad:</label>
+                            <input  type="number" min="1" value="1" class="form-control" th:field="*{cantidad}" onblur="if(this.value == ''){this.value='0'}"  onKeyUp="suma();" id="sum1"  required>
+                            <!--onchange="SumarAutomatico(this.value);"-->
+                        </div>
+                         <div class="form-group col-md-4">
+                                <label>Iva:</label>
+                                <input type="text" class="form-control" value="8%" readonly>
+                            </div>
+
+
+                        <div class="form-group col-md">
+                            <label>Precio Unitario:</label>
+                            <input  type="number" min="1" value="1" class="form-control" step=".01" th:field="*{precio}" onblur="if(this.value == ''){this.value='0'}"  onKeyUp="suma();" id="sum2" required>
+                            <!--onchange="SumarAutomatico(this.value);"-->
+                        </div>
+                    </div>
+                    <div class="form-row justify-content-end">
+							 <div class="form-group col-md-4">
+                                <label>SubTotal:</label>
+                                 <span id="MiSubTotal"></span>
+                            </div>
+
+                            <div class="form-group col-md-4">
+                                <label>Importe Total:</label>
+                                <span id="MiTotal"></span>
+                            </div>
+
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="reset" class="btn btn-secondary btn-lg"><img th:src="@{/img/cruz.png}"> Cancelar</button>
+                    <button class="btn btn-secondary btn-lg"><img th:src="@{/img/guardar.png}"> Realizar</button>
+                </div>
+            </form>
+        </div>
+    </div>
+    <!-- Fin Ventana Registrar Compras -->
+
+
+
+
+<center>
+<div class="tituloCompras">
+<center> <h3>Compras - Cliente Mayorista</h3></center>
+</div>
+</center>
+<br>
+<br>
+<div class="marcoCompras">
+<div class="container">
+
+ <div class="row">
+    <div class="col">
+  <span class="float-right">
+   <label for="inputPassword4">Buscar folio: </label>
+   
+  <input type="text" id="txfolio">
+  <button  class="btn btn-link"> <img src="img/archivo.png"></button>
+        </span>
+     </div>
+</div>
+
+<button type="button" class="btn btn-secondary btn-lg" data-toggle="modal" data-target="#exampleModalCenter"><img th:src="@{/img/bloc.png}" src="img/bloc.png" width="30px" height="30px"> </button>
+
+
+
+
+
+
+
+<br><br>
+<center>
+  <div class="table-responsive">
+      <table class="table table-striped table-hover">
+          <thead>
+          <tr>
+              <th scope="col">Folio</th>
+              <th scope="col">Fecha de compra</th>
+              <th scope="col">Nombre Mayorista </th>
+              <th scope="col">Material</th>
+              <th scope="col">Cantidad</th>
+              <th scope="col">Precio Unitario</th>
+              <th scope="col">SubTotal</th>
+              <th scope="col">Iva</th>
+              <th scope="col">Total</th>
+              <th scope="col">Estado</th>
+              <th scope="col">Cancelar</th>
+          </tr>
+          </thead>
+          <tbody>
+
+          <tr th:each="comprasMayo : ${compraMayo}">
+              <td th:text="${comprasMayo.folioComp}"></td>
+              <td th:text="${comprasMayo.fechaComp}"></td>
+              <td th:text="${comprasMayo.nomEmpresa}"></td>
+              <td th:text="${comprasMayo.nomMaterial}"></td>
+              <td th:text="${comprasMayo.cantidad}"></td>
+              <td th:text="${comprasMayo.precio}"></td>
+              <td th:text="${comprasMayo.subTotalComp}"></td>
+              <td th:text="${comprasMayo.iva}"></td>
+              <td th:text="${comprasMayo.totalComp}"></td>
+              <td th:text="${comprasMayo.estadoComp}"></td>
+              <td><a class="btn btn-link" th:href="@{/compraMayorista/cancelarCompra?folioComp=__${comprasMayo.folioComp}__}"> <img th:src="@{/img/cruz.png}" ></a></td>
+          </tr>
+          </tbody>
+      </table>
+  </div>
+</center>
+</div>
+<br>
+  
+     
+    </div>
+    <br>
+    <br>
+    <!--class="btn btn-link"-->
+<script src="/js/jquery.js" th:src="@{/js/jquery.js}"></script>
+<script src="/js/bootstrap.min.js" th:src="@{/js/bootstrap.min.js}"></script>
+
+</body>
+</html>

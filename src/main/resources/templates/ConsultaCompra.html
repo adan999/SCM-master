@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+<meta charset="ISO-8859-1">
+<title>Consultar Compra</title>
+    <link rel="stylesheet" type="text/css" href="static/css/estilos.css" th:href="@{/css/estilos.css}">
+            <link rel="stylesheet" type="text/css" href="static/css/baner.css" th:href="@{/css/baner.css}">
+            <link rel="stylesheet" type="text/css" href="static/css/fonts.css" th:href="@{/css/fonts.css}">
+            <link rel="stylesheet" type="text/css" href="static/css/estilosCompra.css" th:href="@{/css/estilosCompra.css}">
+             <link rel="stylesheet" type="text/css" href="static/css/tablaConsultar.css" th:href="@{/css/tablaConsultar.css}">
+            
+</head>
+<body>
+<div class="titu">
+  <h1 id="titulo" align="center">Consultar Compra</h1>
+  
+  </div>
+  <br><br><br><br><br>
+    <hr size="3" color="black"></hr>
+  
+  
+<div class="cabecera">
+<nav> <!-- Aqui estamos iniciando la nueva etiqueta nav -->
+				<ul class="nav">
+					<li><a href="menu"><span class="icon-home3"></span> Inicio</a></li>
+					<li><a href=""><span class="icon-cart"></span> Compras</a>
+						<ul>
+							<li><a href="realizar">Realizar Compra</a></li>
+							<li><a href="consultar">Consultar Compra</a></li>
+							<li><a href="eliminar">Eliminar Compra</a></li>
+						</ul>
+					</li>
+					<li><a href=""><span class="icon-sale"></span> Ventas</a>
+						<ul>
+							 <li><a href="">Realizar Venta</a></li>
+   						   <li><a href="">Consultar Venta</a></li>
+     				      <li><a href="">Eliminar Ventas</a></li>
+						</ul>
+					</li>
+					<li><a href=""><span class="icon-spell-check"></span> Inventario</a>
+                    	<ul>
+							<li><a href="">Consultar Inventario</a></li>
+						</ul>
+					</li>	
+                     <li><a href=""><span class="icon-automobile"></span> Proveedor</a>
+						<ul>
+							 <li><a href="">Registrar Proveedor</a></li>
+   						   <li><a href="">Consultar Proveedores</a></li>
+     				      <li><a href="">Modificar Proveedores</a></li>
+                          <li><a href=""> Eliminar Proveedores</a></li>			
+						</ul>
+					</li>
+				</ul>
+			</nav><!-- Aqui estamos cerrando la nueva etiqueta nav -->
+	</div>
+	<br><br><br>
+		<br><br><br>
+	
+  <div id="marcoCompra">
+
+<div id="tab">
+ 
+  <table>
+  
+  	<thead>
+  		<tr>
+  			<th> Folio</th>
+			<th> Fecha</th>
+			<th>Material</th>
+			<th>Cantidad</th>
+			<th>Unidad</th>
+			<th>Precio Unitario</th>
+			<th>IVA</th>
+			<th>Importe</th>
+			<th>Estado</th>
+  </tr>
+  </thead>
+  
+ <tr th:each="compras : ${compra}">
+ 	<td th:text="${compras.idCompras}">001</td>
+	 <td th:text="${compras.Fecha}">14/09/2019</td>
+	 <td th:text="${compras.NombreProd}">Carton</td>
+	 <td th:text="${compras.Cantidad}">1456</td>
+	 <td th:text="${compras.Unidad}">KG</td>
+	 <td th:text="${compras.Precio}">3.40</td>
+	 <td>8%</td>
+	 <td th:text="${compras.Total}">$4950.4</td>
+	 <td th:text="${compras.Estado}">$4950.4</td>
+ </tr>
+  </table>
+</div>
+</div>
+
+</body>
+</html>

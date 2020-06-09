@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <title>Registro Compra</title>
+    <link rel="stylesheet" type="text/css" href="static/css/estilos.css" th:href="@{/css/estilos.css}">
+            <link rel="stylesheet" type="text/css" href="static/css/baner.css" th:href="@{/css/baner.css}">
+              <link rel="stylesheet" type="text/css" href="static/css/fonts.css" th:href="@{/css/fonts.css}">
+                            <link rel="stylesheet" type="text/css" href="static/css/estilosCompra.css" th:href="@{/css/estilosCompra.css}">
+              
+</head>
+<body>
+<div class="titu">
+  <h1 id="titulo" align="center">Realizar Compra</h1>
+  
+  </div>
+  <br><br><br><br><br>
+    <hr size="3" color="black"></hr>
+<div class="cabecera">
+<nav> <!-- Aqui estamos iniciando la nueva etiqueta nav -->
+				<ul class="nav">
+					<li><a href="menu"><span class="icon-home3"></span> Inicio</a></li>
+					<li><a href=""><span class="icon-cart"></span> Compras</a>
+						<ul>
+							<li><a href="realizar">Realizar Compra</a></li>
+							<li><a href="consultar">Consultar Compra</a></li>
+							<li><a href="eliminar">Eliminar Compra</a></li>
+						</ul>
+					</li>
+					<li><a href=""><span class="icon-sale"></span> Ventas</a>
+						<ul>
+							 <li><a href="">Realizar Venta</a></li>
+   						   <li><a href="">Consultar Venta</a></li>
+     				      <li><a href="">Eliminar Ventas</a></li>
+						</ul>
+					</li>
+					<li><a href=""><span class="icon-spell-check"></span> Inventario</a>
+                    	<ul>
+							<li><a href="">Consultar Inventario</a></li>
+						</ul>
+					</li>	
+                     <li><a href=""><span class="icon-automobile"></span> Proveedor</a>
+						<ul>
+							 <li><a href="">Registrar Proveedor</a></li>
+   						   <li><a href="">Consultar Proveedores</a></li>
+     				      <li><a href="">Modificar Proveedores</a></li>
+                          <li><a href=""> Eliminar Proveedores</a></li>			
+						</ul>
+					</li>
+				</ul>
+			</nav><!-- Aqui estamos cerrando la nueva etiqueta nav -->
+	</div>
+	<br><br><br>
+  <br><br><br><br>
+  
+  <form th:action="@{/compra/addCompra}" method="post" th:object="${compra}">
+  <label id="lbfecha">Fecha:</label>
+      <input th:field="*{Fecha}" th:value="*{Fecha}" type="date" id="dtFechaRegistro" name="fecha" required>
+  <br><br>
+
+  <label id="lbfolio"><b>Folio:</b></label>
+  <input th:field="*{idCompras}" th:value="*{idCompras}" type="text" id="txfolio"><br><br>
+  <br>
+  <br>
+  <div id="marco">
+  <label id="lbmaterial">Material:</label>
+  <select th:field="*{NombreProd}" id="cbMaterial">
+	<option th:value="Carton">Carton</option>
+    <option th:value="Aluminio">Aluminio</option>
+    <option th:value="Cobre">Cobre</option>
+    <option th:value="Plastico">Plastico</option>
+  </select>
+    
+  <label id="lbcantidad">Cantidad:</label>
+      <input th:field="*{Cantidad}" th:value="*{Cantidad}" type="number" min="1" value="1" id="txcantidad"><br><br>
+    
+ <td>
+ <label id="lbunidad">Unidad:</label>
+    <br>
+     <select th:field="*{Unidad}" id="rb1">
+         <option th:value="gr">Gramo</option>
+         <option th:value="Kg">Kilogramo</option>
+         <option th:value="Ton">Tonelada</option>
+     </select>
+     <!--
+        <input type="radio" id="rb1" >  <label id="lbgramo">Gramo</label>
+       <br>
+        <input type="radio"id="rb2">  <label id="lbkg">Kilogramo</label>
+       <br>
+       <input type="radio" id="rb3">  <label id="lbtonelada">Tonelada</label>
+       -->
+     <br>
+</td>
+    <br>
+   
+   <label id="lbvunitario"> Precio Unitario:</label>
+      <input th:field="*{Precio}" th:value="*{Precio}" type="number" min="1" value="1" id="txvunitario">
+   
+   <!--<label id="lbiva">IVA:</label><input type="text" id="txiva"><br><br><br>-->
+
+    <label id="lbimporte">Importe:</label>
+      <input type="text" id="tximporte"><br><br>
+
+    <button id="btguardar"><b>Guardar</b></button>
+
+    <br>
+</div>
+  </form>
+</body>
+</html>
