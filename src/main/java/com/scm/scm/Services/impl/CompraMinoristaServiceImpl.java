@@ -29,7 +29,7 @@ public class CompraMinoristaServiceImpl implements CompraMinoristaService {
             System.out.println(object.getIdMaterial());
             String sql = String.format("insert into CompraMinorista (FolioSegura, FechaComp, NomCliente, DirCliente, Cantidad, Precio, SubTotalComp, Iva, TotalComp, EstadoComp, Material_idMaterial, usuario_nomUsuario) " +
                             "values('%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s', 'root')",
-                    object.getFolioSegura(), object.getFechaComp(), object.getNomCliente(), object.getDirCliente(), "askdd", object.getPrecio() ,object.getSubTotalComp(), object.getIva(), object.getTotalComp(),object.getEstadoComp(), object.getIdMaterial());
+                    object.getFolioSegura(), object.getFechaComp(), object.getNomCliente(), object.getDirCliente(), object.getCantidad(), object.getPrecio() ,object.getSubTotalComp(), object.getIva(), object.getTotalComp(),object.getEstadoComp(), object.getIdMaterial());
             jdbcTemplate.execute(sql);
             return true;
         }
